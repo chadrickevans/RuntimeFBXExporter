@@ -2,7 +2,7 @@ using Autodesk.Fbx;
 using UnityEngine;
 using System.Collections.Generic;
 
-public class fbxRelease: MonoBehaviour {
+public class fbxRuntimeExporter: MonoBehaviour {
 	public void ExportSelectedObjects(string filePath, List<GameObject> objectsToExport) {
 		using (FbxManager fbxManager = FbxManager.Create()) {
 			// Configure IO settings
@@ -28,12 +28,10 @@ public class fbxRelease: MonoBehaviour {
 				// Export the scene to the file
 				exporter.Export(scene);
 				Debug.Log("Exported to " + filePath);
-				exportNextStep = true;
 			}
 		}
 	}
 
-	public bool exportNextStep;
 
 	private FbxNode CreateFbxNodeFromGameObject(FbxManager fbxManager, GameObject unityObject) {
 		FbxNode fbxNode = FbxNode.Create(fbxManager, unityObject.name);
